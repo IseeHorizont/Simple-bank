@@ -4,6 +4,10 @@
 </p>
 
 <p align="center">
+  Used technologies: Java 11 + JavaFX current version + SQLite + API for Stocks market by https://www.alphavantage.co
+</p>
+
+<p align="center">
   <b>#1 - Main window</b>
 </p>
 <p align="center">
