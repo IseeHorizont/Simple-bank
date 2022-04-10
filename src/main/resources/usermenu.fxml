@@ -200,37 +200,91 @@
                               <Image url="@images/dow-jones-logo/mcdonalds-icon.png" />
                            </image>
                         </ImageView>
-                        <Text fx:id="applePriceField" layoutX="17.0" layoutY="89.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" textAlignment="CENTER" wrappingWidth="92.21630859375" >
+                        <Text fx:id="applePriceField" layoutX="17.0" layoutY="89.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" textAlignment="CENTER" wrappingWidth="92.21630859375">
                             <font>
                                 <Font name="Rockwell" />
                             </font>
                         </Text>
-                        <Text fx:id="microsoftPriceField" layoutX="132.0" layoutY="89.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" textAlignment="CENTER" wrappingWidth="76.21630859375" >
+                        <Text fx:id="microsoftPriceField" layoutX="132.0" layoutY="89.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" textAlignment="CENTER" wrappingWidth="76.21630859375">
                             <font>
                                 <Font name="Rockwell" />
                             </font>
                         </Text>
-                        <Text fx:id="jpmorganPriceField" layoutX="228.0" layoutY="89.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" textAlignment="CENTER" wrappingWidth="80.0" >
+                        <Text fx:id="jpmorganPriceField" layoutX="228.0" layoutY="89.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" textAlignment="CENTER" wrappingWidth="80.0">
                             <font>
                                 <Font name="Rockwell" />
                             </font>
                         </Text>
-                        <Text fx:id="cocaColaPriceField" layoutX="330.0" layoutY="89.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" textAlignment="CENTER" wrappingWidth="87.0" >
+                        <Text fx:id="cocaColaPriceField" layoutX="330.0" layoutY="89.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" textAlignment="CENTER" wrappingWidth="87.0">
                             <font>
                                 <Font name="Rockwell" />
                             </font>
                         </Text>
-                        <Text fx:id="mcDonaldsPriceField" layoutX="428.0" layoutY="89.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" textAlignment="CENTER" wrappingWidth="99.21630859375" >
+                        <Text fx:id="mcDonaldsPriceField" layoutX="428.0" layoutY="89.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" textAlignment="CENTER" wrappingWidth="99.21630859375">
                             <font>
                                 <Font name="Rockwell" />
                             </font>
                         </Text>
-                     </children></AnchorPane>
+                     </children>
+              </AnchorPane>
             </content>
           </Tab>
           <Tab style="-fx-border-color: #9bc5de;" text="S&amp;P 500">
               <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                    <children>
+                        <ImageView fitHeight="45.0" fitWidth="40.0" layoutX="43.0" layoutY="17.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@images/sAndP-logo/icons8-amd-96.png" />
+                            </image>
+                        </ImageView>
+                        <ImageView fitHeight="39.0" fitWidth="43.0" layoutX="151.0" layoutY="17.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@images/sAndP-logo/icons8-nvidia-96.png" />
+                            </image>
+                        </ImageView>
+                        <ImageView fitHeight="38.0" fitWidth="39.0" layoutX="249.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@images/sAndP-logo/1632489707Pfizer-Logo-png.png" />
+                            </image>
+                        </ImageView>
+                        <ImageView fitHeight="38.0" fitWidth="43.0" layoutX="354.0" layoutY="18.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@images/sAndP-logo/icons8-tesla-96.png" />
+                            </image>
+                        </ImageView>
+                        <ImageView fitHeight="45.0" fitWidth="72.0" layoutX="455.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@images/sAndP-logo/icons8-oracle-logo-96.png" />
+                            </image>
+                        </ImageView>
+                        <Text fx:id="amdPriceField" layoutX="17.0" layoutY="89.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" textAlignment="CENTER" wrappingWidth="92.21630859375">
+                            <font>
+                                <Font name="Rockwell" />
+                            </font>
+                        </Text>
+                        <Text fx:id="nvidiaPriceField" layoutX="132.0" layoutY="89.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" textAlignment="CENTER" wrappingWidth="76.21630859375">
+                            <font>
+                                <Font name="Rockwell" />
+                            </font>
+                        </Text>
+                        <Text fx:id="pfizerPriceField" layoutX="228.0" layoutY="89.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" textAlignment="CENTER" wrappingWidth="80.0">
+                            <font>
+                                <Font name="Rockwell" />
+                            </font>
+                        </Text>
+                        <Text fx:id="teslaPriceField" layoutX="330.0" layoutY="89.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" textAlignment="CENTER" wrappingWidth="87.0">
+                            <font>
+                                <Font name="Rockwell" />
+                            </font>
+                        </Text>
+                        <Text fx:id="oraclePriceField" layoutX="428.0" layoutY="89.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" textAlignment="CENTER" wrappingWidth="99.21630859375">
+                            <font>
+                                <Font name="Rockwell" />
+                            </font>
+                        </Text>
+                    </children>
+                </AnchorPane>
               </content>
           </Tab>
         </tabs>
