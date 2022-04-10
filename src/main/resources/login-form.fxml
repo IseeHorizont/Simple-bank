@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="476.0" prefWidth="448.0" style="-fx-background-color: #c0cbd1;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.geekbrains.bank.LogIntoAccountController">
+   <children>
+      <AnchorPane prefHeight="88.0" prefWidth="448.0" style="-fx-background-color: #9bc5de;">
+         <children>
+            <Text layoutX="116.0" layoutY="48.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Simple-Bank">
+               <font>
+                  <Font name="Rockwell" size="23.0" />
+               </font>
+            </Text>
+            <ImageView fitHeight="63.0" fitWidth="74.0" layoutX="32.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/bank-icons/main-icon.png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+      <Text layoutX="138.0" layoutY="222.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Вход в аккаунт">
+         <font>
+            <Font name="Rockwell" size="20.0" />
+         </font>
+      </Text>
+      <Label layoutX="199.0" layoutY="261.0" text="ФИО">
+         <font>
+            <Font name="Rockwell" />
+         </font>
+      </Label>
+      <TextField fx:id="userName" layoutX="97.0" layoutY="278.0" prefHeight="26.0" prefWidth="238.0" style="-fx-border-color: #9bc5de;"/>
+      <Label layoutX="191.0" layoutY="320.0" text="Пароль">
+         <font>
+            <Font name="Rockwell" />
+         </font>
+      </Label>
+      <TextField fx:id="userPassword" layoutX="137.0" layoutY="337.0" style="-fx-border-color: #9bc5de;" />
+
+      <Button fx:id="logIntoUserAccount" layoutX="176.0" layoutY="383.0" mnemonicParsing="false" prefHeight="32.0"  style="-fx-border-color: #9bc5de;" prefWidth="81.0" text="Войти">
+         <font>
+            <Font name="Rockwell" />
+         </font>
+      </Button>
+      <ImageView fitHeight="88.0" fitWidth="81.0" layoutX="174.0" layoutY="113.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@images/bank-icons/1-user-icon.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>

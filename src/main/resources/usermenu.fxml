@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="695.0" prefWidth="978.0" style="-fx-background-color: #c0cbd1;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.geekbrains.bank.UserMenuController">
+   <children>
+      <AnchorPane layoutY="-3.0" prefHeight="701.0" prefWidth="350.0" style="-fx-background-color: #9bc5de;">
+         <children>
+            <Pane layoutX="34.0" layoutY="25.0" prefHeight="75.0" prefWidth="283.0">
+               <children>
+                  <ImageView fx:id="bankLogo" fitHeight="61.0" fitWidth="63.0" layoutX="14.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true">
+                      <image>
+                          <Image url="@images/bank-icons/main-icon.png" />
+                      </image>
+                  </ImageView>
+                  <Text layoutX="89.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Simple Bank" wrappingWidth="171.21630859375">
+                     <font>
+                        <Font name="Rockwell" size="25.0" />
+                     </font>
+                  </Text>
+               </children>
+            </Pane>
+      
+             <Text fx:id="balance" layoutX="58.0" layoutY="196.0" strokeType="OUTSIDE" text="Баланс" wrappingWidth="236.0">
+                 <font>
+                     <Font name="Rockwell" size="23.0" />
+                 </font>
+             </Text>
+             <Text fx:id="accountNumber" layoutX="58.0" layoutY="232.0" strokeType="OUTSIDE" text="счёт №" wrappingWidth="283.0">
+                 <font>
+                     <Font name="Rockwell" size="18.0" />
+                 </font>
+             </Text>
+             <Button fx:id="addMoneyButton" layoutX="74.0" layoutY="271.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="171.0" style="-fx-border-color: #9bc5de;" text="Внести деньги">
+                 <font>
+                     <Font name="Rockwell" />
+                 </font>
+                 <graphic>
+                    <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="83.0" layoutY="271.0" pickOnBounds="true" preserveRatio="true">
+                         <image>
+                             <Image url="@images/bank-icons/add-icon.png" />
+                         </image>
+                     </ImageView>
+                 </graphic>
+             </Button>
+             <Button fx:id="doTransferButton" layoutX="74.0" layoutY="338.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="171.0" style="-fx-border-color: #9bc5de;" text="Перевести">
+                 <font>
+                     <Font name="Rockwell" />
+                 </font>
+                 <graphic>
+                     <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="83.0" layoutY="271.0" pickOnBounds="true" preserveRatio="true">
+                         <image>
+                             <Image url="@images/bank-icons/transfer-icon.png" />
+                         </image>
+                     </ImageView>
+                 </graphic>
+             </Button>
+             <Button fx:id="showAccountInfoButton" layoutX="74.0" layoutY="405.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="171.0" style="-fx-border-color: #9bc5de;" text="Реквизиты">
+                 <font>
+                     <Font name="Rockwell" />
+                 </font>
+                 <graphic>
+                     <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="83.0" layoutY="271.0" pickOnBounds="true" preserveRatio="true">
+                         <image>
+                             <Image url="@images/bank-icons/doc-icon.png" />
+                         </image>
+                     </ImageView>
+                 </graphic>
+             </Button>
+             <Button fx:id="closeAccountButton" layoutX="74.0" layoutY="470.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="171.0" style="-fx-border-color: #9bc5de;" text="Закрыть аккаунт">
+                 <font>
+                     <Font name="Rockwell" />
+                 </font>
+                 <graphic>
+                     <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="83.0" layoutY="271.0" pickOnBounds="true" preserveRatio="true">
+                         <image>
+                             <Image url="@images/bank-icons/delete-icon.png" />
+                         </image>
+                     </ImageView>
+                 </graphic>
+             </Button>
+             <Button fx:id="logOutFromUserMenuButton" layoutX="74.0" layoutY="536.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="171.0" style="-fx-border-color: #9bc5de;" text="Выход">
+                 <font>
+                     <Font name="Rockwell" />
+                 </font>
+                 <graphic>
+                     <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="83.0" layoutY="271.0" pickOnBounds="true" preserveRatio="true">
+                         <image>
+                             <Image url="@images/bank-icons/exit-icon.png" />
+                         </image>
+                     </ImageView>
+                 </graphic>
+             </Button>
+         </children>
+      </AnchorPane>
+
+       <TabPane layoutX="382.0" layoutY="148.0" prefHeight="147.0" prefWidth="548.0" style="-fx-background-color: #9bc5de;" tabClosingPolicy="UNAVAILABLE">
+          <tabs>
+          <Tab style="-fx-border-color: #9bc5de;" text="Курсы валют">
+            <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                    <children>
+                        <ImageView fx:id="usdImage" fitHeight="34.0" fitWidth="44.0" layoutX="27.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@images/usa-icon.png" />
+                            </image></ImageView>
+                        <Text fx:id="usdTextField" layoutX="142.0" layoutY="39.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0 руб" wrappingWidth="109.21630859375">
+                            <font>
+                                <Font name="Rockwell" size="18.0" />
+                            </font>
+                        </Text>
+                        <ImageView fx:id="euroImage" fitHeight="38.0" fitWidth="63.0" layoutX="26.0" layoutY="58.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@images/euro-icon.png" />
+                            </image></ImageView>
+                        <Text fx:id="euroTextField" layoutX="151.0" layoutY="86.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0 руб" wrappingWidth="108.9658203125">
+                            <font>
+                                <Font name="Rockwell" size="18.0" />
+                            </font>
+                        </Text>
+                        <ImageView fx:id="gbpImage" fitHeight="36.0" fitWidth="47.0" layoutX="278.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@images/north-korea-icon.png" />
+                            </image></ImageView>
+                        <Text fx:id="gbpTextField" layoutX="389.0" layoutY="39.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0 руб" wrappingWidth="112.9658203125">
+                            <font>
+                                <Font name="Rockwell" size="18.0" />
+                            </font>
+                        </Text>
+                        <ImageView fx:id="cadImage" fitHeight="37.0" fitWidth="39.0" layoutX="279.0" layoutY="60.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@images/canada-icon.png" />
+                            </image>
+                        </ImageView>
+                        <Text fx:id="cadTextField" layoutX="387.0" layoutY="86.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0 руб" wrappingWidth="116.9658203125">
+                            <font>
+                                <Font name="Rockwell" size="18.0" />
+                            </font>
+                        </Text>
+                        <Label layoutX="83.0" layoutY="19.0" text="USD">
+                            <font>
+                                <Font name="Rockwell" size="18.0" />
+                            </font>
+                        </Label>
+                        <Label layoutX="83.0" layoutY="66.0" text="EURO">
+                            <font>
+                                <Font name="Rockwell" size="18.0" />
+                            </font>
+                        </Label>
+                        <Label layoutX="336.0" layoutY="20.0" text="GBP">
+                            <font>
+                                <Font name="Rockwell" size="18.0" />
+                            </font>
+                        </Label>
+                        <Label layoutX="335.0" layoutY="67.0" text="CAD">
+                            <font>
+                                <Font name="Rockwell" size="18.0" />
+                            </font>
+                        </Label>
+                    </children></AnchorPane>
+            </content>
+        </Tab>
+          <Tab style="-fx-border-color: #9bc5de;" text="Dow Jones">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+            </content>
+          </Tab>
+          <Tab style="-fx-border-color: #9bc5de;" text="S&amp;P 500">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+              </content>
+          </Tab>
+        </tabs>
+       </TabPane>
+       <TableView fx:id="tableOfTransactions" layoutX="382.0" layoutY="370.0" prefHeight="277.0" prefWidth="548.0" style="-fx-background-color: #9bc5de;">
+          <placeholder>
+              <Label prefHeight="18.0" prefWidth="230.0" text="Операций по счёту пока нет...">
+                   <font>
+                      <Font name="Rockwell" size="13.0" />
+                   </font>
+              </Label>
+          </placeholder>
+          <columns>
+              <TableColumn fx:id="columnTransactionDate" prefWidth="123.0" text="Дата операции" />
+              <TableColumn fx:id="columnTransactionSender" prefWidth="145.0" text="Отправитель" />
+              <TableColumn fx:id="columnTransactionBeneficiary" prefWidth="171.0" text="Получатель" />
+              <TableColumn fx:id="columnTransactionAmount" prefWidth="108.0" text="Сумма" />
+          </columns>
+       </TableView>
+       <Button fx:id="giveDonationButton" layoutX="867.0" layoutY="25.0" mnemonicParsing="false" prefHeight="61.0" prefWidth="46.0" style="-fx-focus-traversable: true;-fx-border-color: #9bc5de;">
+           <graphic>
+               <ImageView fitHeight="46.0" fitWidth="56.0" layoutX="857.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true">
+                   <Image url="@images/giveDonation.png" />
+               </ImageView>
+           </graphic>
+       </Button>
+      <Label layoutX="543.0" layoutY="348.0" prefHeight="21.0" prefWidth="226.0" text="История операций по счёту">
+         <font>
+            <Font name="Rockwell" size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="588.0" layoutY="120.0" text="Фондовый рынок">
+         <font>
+            <Font name="Rockwell" size="15.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

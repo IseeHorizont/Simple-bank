@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="552.0" prefWidth="539.0" style="-fx-background-color: #c0cbd1;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.geekbrains.bank.CreateAccountController">
+   <children>
+      <AnchorPane prefHeight="88.0" prefWidth="539.0" style="-fx-background-color: #9bc5de;">
+         <children>
+            <Text layoutX="116.0" layoutY="48.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Simple-Bank">
+               <font>
+                  <Font name="Rockwell" size="23.0" />
+               </font>
+            </Text>
+            <ImageView fitHeight="63.0" fitWidth="74.0" layoutX="32.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/bank-icons/main-icon.png" />
+               </image>
+            </ImageView>
+
+         </children>
+      </AnchorPane>
+      <Text layoutX="165.0" layoutY="121.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Регистрация" textAlignment="CENTER" wrappingWidth="190.21630859375">
+         <font>
+            <Font name="Rockwell" size="19.0" />
+         </font>
+      </Text>
+      <Label layoutX="98.0" layoutY="221.0" text="ФИО">
+         <font>
+            <Font name="Rockwell" />
+         </font>
+      </Label>
+      <TextField fx:id="fullNameNewUser" layoutX="98.0" layoutY="238.0" prefHeight="26.0" prefWidth="324.0" style="-fx-border-color: #9bc5de;" />
+      <Label layoutX="98.0" layoutY="279.0" text="Адрес эл. почты">
+         <font>
+            <Font name="Rockwell" />
+         </font>
+      </Label>
+      <TextField fx:id="emailNewUser" layoutX="98.0" layoutY="296.0" prefHeight="26.0" prefWidth="324.0" style="-fx-border-color: #9bc5de;" />
+      <Label layoutX="98.0" layoutY="337.0" text="Дата рождения">
+         <font>
+            <Font name="Rockwell" />
+         </font>
+      </Label>
+      <TextField fx:id="dateOfBirthNewUser" layoutX="98.0" layoutY="354.0" prefHeight="26.0" prefWidth="324.0" style="-fx-border-color: #9bc5de;" />
+      <Label layoutX="98.0" layoutY="395.0" text="Место рождения">
+         <font>
+            <Font name="Rockwell" />
+         </font>
+      </Label>
+      <TextField fx:id="placeOfBirthNewUser" layoutX="98.0" layoutY="412.0" prefHeight="26.0" prefWidth="324.0" style="-fx-border-color: #9bc5de;" />
+
+      <Button layoutX="187.0" layoutY="469.0" mnemonicParsing="false" onAction="#createNewAccount" prefHeight="26.0" prefWidth="146.0" style="-fx-border-color: #9bc5de;" text="Создать аккаунт">
+         <font>
+            <Font name="Rockwell" />
+         </font>
+      </Button>
+      <ImageView fitHeight="98.0" fitWidth="107.0" layoutX="211.0" layoutY="127.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@images/bank-icons/2-create-icon.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>

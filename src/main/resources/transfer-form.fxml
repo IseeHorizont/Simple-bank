@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="492.0" prefWidth="512.0" style="-fx-background-color: #c0cbd1;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.geekbrains.bank.InnerTransferController">
+   <children>
+      <AnchorPane prefHeight="88.0" prefWidth="512.0" style="-fx-background-color: #9bc5de;">
+         <children>
+            <Text layoutX="116.0" layoutY="48.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Simple-Bank">
+               <font>
+                  <Font name="Rockwell" size="23.0" />
+               </font>
+            </Text>
+            <ImageView fitHeight="63.0" fitWidth="74.0" layoutX="32.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/bank-icons/main-icon.png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+      <Text layoutX="95.0" layoutY="239.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Перевод другому пользователю">
+         <font>
+            <Font name="Rockwell" size="20.0" />
+         </font>
+      </Text>
+
+      <Label layoutX="166.0" layoutY="278.0" text="Введите № счёта получателя">
+         <font>
+            <Font name="Rockwell" size="13.0" />
+         </font>
+      </Label>
+      <TextField fx:id="beneficiaryIdField" layoutX="113.0" layoutY="296.0" prefHeight="26.0" prefWidth="286.0" style="-fx-border-color: #9bc5de;" />
+      <Label layoutX="179.0" layoutY="349.0" text="Введите сумму перевода">
+         <font>
+            <Font name="Rockwell" size="13.0" />
+         </font>
+      </Label>
+      <TextField fx:id="amountForTransferField" layoutX="166.0" layoutY="367.0" prefHeight="26.0" prefWidth="199.0" style="-fx-border-color: #9bc5de;" />
+
+      <Button fx:id="doTransferMoney" layoutX="217.0" layoutY="416.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="98.0" style="-fx-border-color: #9bc5de;" text="Перевести">
+         <font>
+            <Font name="Rockwell" size="13.0" />
+         </font>
+      </Button>
+      <ImageView fitHeight="98.0" fitWidth="98.0" layoutX="207.0" layoutY="113.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@images/bank-icons/2-transfer-icon.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>
