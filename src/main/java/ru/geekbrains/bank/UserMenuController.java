@@ -17,7 +17,6 @@ import java.util.Optional;
 
 public class UserMenuController {
 
-    // TODO
     private static UserAccount currentUserAccount = LogIntoAccountController.userAccount;
 
     @FXML
@@ -73,13 +72,28 @@ public class UserMenuController {
     @FXML
     private Text cadTextField;
 
+//    @FXML
+//    private Text applePriceField;
+//
+//    @FXML
+//    private Text microsoftPriceField;
+//
+//    @FXML
+//    private Text jpmorganPriceField;
+//
+//    @FXML
+//    private Text cocaColaPriceField;
+//
+//    @FXML
+//    private Text mcDonaldsPriceField;
+
     @FXML
     public void initialize() {
         // set up balance & account's number
         balance.setText(currentUserAccount.getUserBalance() + " USD");
         accountNumber.setText(currentUserAccount.getUserId());
 
-        // TODO show exchange rate
+        // show exchange rate
         ExchangeRates exchangeRates = new ExchangeRates();
         if (exchangeRates != null) {
             usdTextField.setText(exchangeRates.getUsdRate() + " руб");
@@ -87,6 +101,18 @@ public class UserMenuController {
             gbpTextField.setText(exchangeRates.getGbpRate() + " руб");
             cadTextField.setText(exchangeRates.getCadRate() + " руб");
         }
+
+        // TODO maybe I need to create stocks classes in Main before user came into account?
+        // TODO time out of requests to API - 5 sec
+        // show Dow Jones stocks
+//        DowJonesHelper dowJones = new DowJonesHelper();
+//        if (dowJones != null) {
+//            applePriceField.setText(dowJones.getApplePrice() + "$");
+//            microsoftPriceField.setText(dowJones.getMicrosoftPrice() + "$");
+//            jpmorganPriceField.setText(dowJones.getJpmorganPrice() + "$");
+//            cocaColaPriceField.setText(dowJones.getCocaColaPrice() + "$");
+//            mcDonaldsPriceField.setText(dowJones.getMcDonaldsPrice() + "$");
+//        }
 
         // go to DB and get user's transactions
         ArrayList<Transaction> userTransactions = SQLHandler.getUserTransactions(currentUserAccount);
@@ -160,7 +186,7 @@ public class UserMenuController {
             });
         });
 
-        // TODO transfer money
+        // transfer money
         doTransferButton.setOnAction(event -> {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("/transfer-form.fxml"));
@@ -173,7 +199,7 @@ public class UserMenuController {
             Stage stage = new Stage();
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.setTitle("Перевод средств");
-            stage.setScene(new Scene(root, 650, 600));
+            stage.setScene(new Scene(root, 500, 600));
             stage.showAndWait();
         });
 

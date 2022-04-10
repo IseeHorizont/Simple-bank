@@ -173,7 +173,59 @@
         </Tab>
           <Tab style="-fx-border-color: #9bc5de;" text="Dow Jones">
             <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <ImageView fitHeight="45.0" fitWidth="40.0" layoutX="43.0" layoutY="17.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@images/dow-jones-logo/apple-icon.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fitHeight="39.0" fitWidth="43.0" layoutX="151.0" layoutY="17.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@images/dow-jones-logo/microsoft-icon.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fitHeight="38.0" fitWidth="39.0" layoutX="249.0" layoutY="18.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@images/dow-jones-logo/chase-bank-icon.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fitHeight="38.0" fitWidth="43.0" layoutX="354.0" layoutY="18.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@images/dow-jones-logo/coca-cola-icon.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fitHeight="45.0" fitWidth="72.0" layoutX="455.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@images/dow-jones-logo/mcdonalds-icon.png" />
+                           </image>
+                        </ImageView>
+                        <Text fx:id="applePriceField" layoutX="17.0" layoutY="89.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" textAlignment="CENTER" wrappingWidth="92.21630859375" >
+                            <font>
+                                <Font name="Rockwell" />
+                            </font>
+                        </Text>
+                        <Text fx:id="microsoftPriceField" layoutX="132.0" layoutY="89.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" textAlignment="CENTER" wrappingWidth="76.21630859375" >
+                            <font>
+                                <Font name="Rockwell" />
+                            </font>
+                        </Text>
+                        <Text fx:id="jpmorganPriceField" layoutX="228.0" layoutY="89.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" textAlignment="CENTER" wrappingWidth="80.0" >
+                            <font>
+                                <Font name="Rockwell" />
+                            </font>
+                        </Text>
+                        <Text fx:id="cocaColaPriceField" layoutX="330.0" layoutY="89.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" textAlignment="CENTER" wrappingWidth="87.0" >
+                            <font>
+                                <Font name="Rockwell" />
+                            </font>
+                        </Text>
+                        <Text fx:id="mcDonaldsPriceField" layoutX="428.0" layoutY="89.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" textAlignment="CENTER" wrappingWidth="99.21630859375" >
+                            <font>
+                                <Font name="Rockwell" />
+                            </font>
+                        </Text>
+                     </children></AnchorPane>
             </content>
           </Tab>
           <Tab style="-fx-border-color: #9bc5de;" text="S&amp;P 500">

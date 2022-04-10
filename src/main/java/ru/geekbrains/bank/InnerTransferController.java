@@ -7,7 +7,6 @@ import javafx.scene.control.TextField;
 
 public class InnerTransferController {
 
-    // TODO need or not ???
     private static UserAccount currentUserAccount = LogIntoAccountController.userAccount;
 
     @FXML
@@ -22,10 +21,10 @@ public class InnerTransferController {
     @FXML
     void initialize() {
         doTransferMoney.setOnAction(event -> {
-            // TODO check data from user
+            // check data from user
             String beneficiaryId = beneficiaryIdField.getText().trim();
             if(beneficiaryId == null || !SQLHandler.isUserIdContainsInDB(beneficiaryId)) {
-                // TODO wrong id
+                // wrong id
                 printAlert(Alert.AlertType.ERROR, "Ошибка ввода", "Неверный номер счёта получателя");
                 return;
             }
@@ -41,7 +40,7 @@ public class InnerTransferController {
             // TODO get String of 'currentDate'
             // DateFormat currentDate = new SimpleDateFormat("dd.MM.yyyy");
             // Date date = new Date();
-            var currentDate = "09.04.2022";
+            var currentDate = "10.04.2022";
             // current date -> senderId -> beneficiaryId -> money
             boolean isTransferComplete = SQLHandler.transferBetweenUsersAndWriteTransaction(currentDate, currentUserAccount.getUserId(), beneficiaryId, amountForTransfer);
             if (!isTransferComplete) {
@@ -51,7 +50,6 @@ public class InnerTransferController {
             printAlert(Alert.AlertType.INFORMATION, "Перевод средств", "Перевод успешно выполнен");
             doTransferMoney.getScene().getWindow().hide();
         });
-
     }
 
     private static void printAlert(Alert.AlertType type, String title,  String messageToUser){
