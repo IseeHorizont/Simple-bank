@@ -7,7 +7,7 @@
   <b>#1 - Main window</b>
 </p>
 <p align="center">
-  <img src="images for readme/main.png" width="300" height="350">
+  <img src="images for readme/main.png" width="300" height="370">
 </p>
 
 <p align="center">
