@@ -1,6 +1,6 @@
-<h2 align="center"> My little project - "Simple-Bank"</h2>
 <p align="center">
-  <img src="images for readme/bank-logo.png" width="250" height="130">
+  <img src="images for readme/logo.png" width="64" height="64">
+  <h2 align="center"> My little project - "Simple-Bank"</h2>
 </p>
 
 <p align="center">
