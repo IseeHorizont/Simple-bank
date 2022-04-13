@@ -7,7 +7,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="403.0" prefWidth="326.0" style="-fx-background-color: #c0cbd1;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.geekbrains.bank.MainController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="403.0" prefWidth="326.0" style="-fx-background-color: #c0cbd1;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.geekbrains.bank.controllers.MainController">
    <children>
       <AnchorPane layoutX="-2.0" layoutY="-1.0" prefHeight="90.0" prefWidth="328.0" style="-fx-background-color: #9bc5de;">
          <children>
@@ -18,7 +18,7 @@
             </Text>
             <ImageView fitHeight="54.0" fitWidth="63.0" layoutX="26.0" layoutY="18.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@images/bank-icons/main-icon.png" />
+                  <Image url="@../../images/bank-icons/main-icon.png" />
                </image>
             </ImageView>
          </children>

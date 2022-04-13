@@ -13,7 +13,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="695.0" prefWidth="978.0" style="-fx-background-color: #c0cbd1;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.geekbrains.bank.UserMenuController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="695.0" prefWidth="978.0" style="-fx-background-color: #c0cbd1;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.geekbrains.bank.controllers.UserMenuController">
    <children>
       <AnchorPane layoutY="-3.0" prefHeight="701.0" prefWidth="350.0" style="-fx-background-color: #9bc5de;">
          <children>
@@ -21,7 +21,7 @@
                <children>
                   <ImageView fx:id="bankLogo" fitHeight="61.0" fitWidth="63.0" layoutX="14.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true">
                       <image>
-                          <Image url="@images/bank-icons/main-icon.png" />
+                          <Image url="@../../images/bank-icons/main-icon.png" />
                       </image>
                   </ImageView>
                   <Text layoutX="89.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Simple Bank" wrappingWidth="171.21630859375">
@@ -49,7 +49,7 @@
                  <graphic>
                     <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="83.0" layoutY="271.0" pickOnBounds="true" preserveRatio="true">
                          <image>
-                             <Image url="@images/bank-icons/add-icon.png" />
+                             <Image url="@../../images/bank-icons/add-icon.png" />
                          </image>
                      </ImageView>
                  </graphic>
@@ -61,7 +61,7 @@
                  <graphic>
                      <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="83.0" layoutY="271.0" pickOnBounds="true" preserveRatio="true">
                          <image>
-                             <Image url="@images/bank-icons/transfer-icon.png" />
+                             <Image url="@../../images/bank-icons/transfer-icon.png" />
                          </image>
                      </ImageView>
                  </graphic>
@@ -73,7 +73,7 @@
                  <graphic>
                      <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="83.0" layoutY="271.0" pickOnBounds="true" preserveRatio="true">
                          <image>
-                             <Image url="@images/bank-icons/doc-icon.png" />
+                             <Image url="@../../images/bank-icons/doc-icon.png" />
                          </image>
                      </ImageView>
                  </graphic>
@@ -85,7 +85,7 @@
                  <graphic>
                      <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="83.0" layoutY="271.0" pickOnBounds="true" preserveRatio="true">
                          <image>
-                             <Image url="@images/bank-icons/delete-icon.png" />
+                             <Image url="@../../images/bank-icons/delete-icon.png" />
                          </image>
                      </ImageView>
                  </graphic>
@@ -97,7 +97,7 @@
                  <graphic>
                      <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="83.0" layoutY="271.0" pickOnBounds="true" preserveRatio="true">
                          <image>
-                             <Image url="@images/bank-icons/exit-icon.png" />
+                             <Image url="@../../images/bank-icons/exit-icon.png" />
                          </image>
                      </ImageView>
                  </graphic>
@@ -113,7 +113,7 @@
                     <children>
                         <ImageView fx:id="usdImage" fitHeight="34.0" fitWidth="44.0" layoutX="27.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                             <image>
-                                <Image url="@images/usa-icon.png" />
+                                <Image url="@../../images/usa-icon.png" />
                             </image></ImageView>
                         <Text fx:id="usdTextField" layoutX="142.0" layoutY="39.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0 руб" wrappingWidth="109.21630859375">
                             <font>
@@ -122,7 +122,7 @@
                         </Text>
                         <ImageView fx:id="euroImage" fitHeight="38.0" fitWidth="63.0" layoutX="26.0" layoutY="58.0" pickOnBounds="true" preserveRatio="true">
                             <image>
-                                <Image url="@images/euro-icon.png" />
+                                <Image url="@../../images/euro-icon.png" />
                             </image></ImageView>
                         <Text fx:id="euroTextField" layoutX="151.0" layoutY="86.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0 руб" wrappingWidth="108.9658203125">
                             <font>
@@ -131,7 +131,7 @@
                         </Text>
                         <ImageView fx:id="gbpImage" fitHeight="36.0" fitWidth="47.0" layoutX="278.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true">
                             <image>
-                                <Image url="@images/north-korea-icon.png" />
+                                <Image url="@../../images/north-korea-icon.png" />
                             </image></ImageView>
                         <Text fx:id="gbpTextField" layoutX="389.0" layoutY="39.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0 руб" wrappingWidth="112.9658203125">
                             <font>
@@ -140,7 +140,7 @@
                         </Text>
                         <ImageView fx:id="cadImage" fitHeight="37.0" fitWidth="39.0" layoutX="279.0" layoutY="60.0" pickOnBounds="true" preserveRatio="true">
                             <image>
-                                <Image url="@images/canada-icon.png" />
+                                <Image url="@../../images/canada-icon.png" />
                             </image>
                         </ImageView>
                         <Text fx:id="cadTextField" layoutX="387.0" layoutY="86.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0 руб" wrappingWidth="116.9658203125">
@@ -177,27 +177,27 @@
                      <children>
                         <ImageView fitHeight="45.0" fitWidth="40.0" layoutX="43.0" layoutY="17.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@images/dow-jones-logo/apple-icon.png" />
+                              <Image url="@../../images/dow-jones-logo/apple-icon.png" />
                            </image>
                         </ImageView>
                         <ImageView fitHeight="39.0" fitWidth="43.0" layoutX="151.0" layoutY="17.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@images/dow-jones-logo/microsoft-icon.png" />
+                              <Image url="@../../images/dow-jones-logo/microsoft-icon.png" />
                            </image>
                         </ImageView>
                         <ImageView fitHeight="38.0" fitWidth="39.0" layoutX="249.0" layoutY="18.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@images/dow-jones-logo/chase-bank-icon.png" />
+                              <Image url="@../../images/dow-jones-logo/chase-bank-icon.png" />
                            </image>
                         </ImageView>
                         <ImageView fitHeight="38.0" fitWidth="43.0" layoutX="354.0" layoutY="18.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@images/dow-jones-logo/coca-cola-icon.png" />
+                              <Image url="@../../images/dow-jones-logo/coca-cola-icon.png" />
                            </image>
                         </ImageView>
                         <ImageView fitHeight="45.0" fitWidth="72.0" layoutX="455.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@images/dow-jones-logo/mcdonalds-icon.png" />
+                              <Image url="@../../images/dow-jones-logo/mcdonalds-icon.png" />
                            </image>
                         </ImageView>
                         <Text fx:id="applePriceField" layoutX="17.0" layoutY="89.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" textAlignment="CENTER" wrappingWidth="92.21630859375">
@@ -235,27 +235,27 @@
                     <children>
                         <ImageView fitHeight="45.0" fitWidth="40.0" layoutX="43.0" layoutY="17.0" pickOnBounds="true" preserveRatio="true">
                             <image>
-                                <Image url="@images/sAndP-logo/icons8-amd-96.png" />
+                                <Image url="@../../images/sAndP-logo/icons8-amd-96.png" />
                             </image>
                         </ImageView>
                         <ImageView fitHeight="39.0" fitWidth="43.0" layoutX="151.0" layoutY="17.0" pickOnBounds="true" preserveRatio="true">
                             <image>
-                                <Image url="@images/sAndP-logo/icons8-nvidia-96.png" />
+                                <Image url="@../../images/sAndP-logo/icons8-nvidia-96.png" />
                             </image>
                         </ImageView>
                         <ImageView fitHeight="38.0" fitWidth="39.0" layoutX="249.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true">
                             <image>
-                                <Image url="@images/sAndP-logo/1632489707Pfizer-Logo-png.png" />
+                                <Image url="@../../images/sAndP-logo/1632489707Pfizer-Logo-png.png" />
                             </image>
                         </ImageView>
                         <ImageView fitHeight="38.0" fitWidth="43.0" layoutX="354.0" layoutY="18.0" pickOnBounds="true" preserveRatio="true">
                             <image>
-                                <Image url="@images/sAndP-logo/icons8-tesla-96.png" />
+                                <Image url="@../../images/sAndP-logo/icons8-tesla-96.png" />
                             </image>
                         </ImageView>
                         <ImageView fitHeight="45.0" fitWidth="72.0" layoutX="455.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                             <image>
-                                <Image url="@images/sAndP-logo/icons8-oracle-logo-96.png" />
+                                <Image url="@../../images/sAndP-logo/icons8-oracle-logo-96.png" />
                             </image>
                         </ImageView>
                         <Text fx:id="amdPriceField" layoutX="17.0" layoutY="89.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" textAlignment="CENTER" wrappingWidth="92.21630859375">
@@ -307,7 +307,7 @@
        <Button fx:id="giveDonationButton" layoutX="867.0" layoutY="25.0" mnemonicParsing="false" prefHeight="61.0" prefWidth="46.0" style="-fx-focus-traversable: true;-fx-border-color: #9bc5de;">
            <graphic>
                <ImageView fitHeight="46.0" fitWidth="56.0" layoutX="857.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true">
-                   <Image url="@images/giveDonation.png" />
+                   <Image url="@../../images/giveDonation.png" />
                </ImageView>
            </graphic>
        </Button>

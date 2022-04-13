@@ -1,4 +1,4 @@
-package ru.geekbrains.bank;
+package ru.geekbrains.bank.controllers;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -11,6 +11,12 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import ru.geekbrains.bank.DAO.TransactionDaoImpl;
+import ru.geekbrains.bank.utils.ExchangeRates;
+import ru.geekbrains.bank.DAO.UserAccountDaoImpl;
+import ru.geekbrains.bank.models.Transaction;
+import ru.geekbrains.bank.models.UserAccount;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Optional;
@@ -18,10 +24,11 @@ import java.util.Optional;
 public class UserMenuController {
 
     private static UserAccount currentUserAccount = LogIntoAccountController.userAccount;
+    private UserAccountDaoImpl userAccountDao;
+    private TransactionDaoImpl transactionDao;
 
     @FXML
     private Text balance;
-
     @FXML
     private Text accountNumber;
 
@@ -29,46 +36,32 @@ public class UserMenuController {
 
     @FXML
     private TableView<Transaction> tableOfTransactions;
-
     @FXML
     private TableColumn<Transaction, String> columnTransactionDate;
-
     @FXML
     private TableColumn<Transaction, String> columnTransactionSender;
-
     @FXML
     private TableColumn<Transaction, String> columnTransactionBeneficiary;
-
     @FXML
     private TableColumn<Transaction, String> columnTransactionAmount;
-
     @FXML
     private Button addMoneyButton;
-
     @FXML
     private Button doTransferButton;
-
     @FXML
     private Button showAccountInfoButton;
-
     @FXML
     private Button closeAccountButton;
-
     @FXML
     private Button logOutFromUserMenuButton;
-
     @FXML
     private Button giveDonationButton;
-
     @FXML
     private Text usdTextField;
-
     @FXML
     private Text euroTextField;
-
     @FXML
     private Text gbpTextField;
-
     @FXML
     private Text cadTextField;
 
@@ -89,6 +82,9 @@ public class UserMenuController {
 
     @FXML
     public void initialize() {
+        userAccountDao = new UserAccountDaoImpl();
+        transactionDao = new TransactionDaoImpl();
+
         // set up balance & account's number
         balance.setText(currentUserAccount.getUserBalance() + " USD");
         accountNumber.setText(currentUserAccount.getUserId());
@@ -115,7 +111,9 @@ public class UserMenuController {
 //        }
 
         // go to DB and get user's transactions
-        ArrayList<Transaction> userTransactions = SQLHandler.getUserTransactions(currentUserAccount);
+        // TODO implement DAO
+        ArrayList<Transaction> userTransactions = transactionDao.getUserTransactions(currentUserAccount);
+        //ArrayList<Transaction> userTransactions = SQLHandler.getUserTransactions(currentUserAccount);
         if (userTransactions != null) {
             columnTransactionDate.setCellValueFactory(new PropertyValueFactory<>("transactionDate"));
             columnTransactionSender.setCellValueFactory(new PropertyValueFactory<>("transactionSender"));
@@ -140,7 +138,8 @@ public class UserMenuController {
             confirmText.ifPresent(password -> {
                 if (password.equals(currentUserAccount.getUserPassword())) {
                     // go to DB & remove current user
-                    boolean isUserDeleted = SQLHandler.removeUser(currentUserAccount);
+                    // TODO DAO-layer boolean isUserDeleted = SQLHandler.removeUser(currentUserAccount);
+                    boolean isUserDeleted = userAccountDao.removeUser(currentUserAccount);
                     if (isUserDeleted) {
                         printAlert(Alert.AlertType.INFORMATION, "Удаление аккаунта", "Ваш аккаунт удалён");
                         closeAccountButton.getScene().getWindow().hide();
@@ -175,12 +174,14 @@ public class UserMenuController {
                     printAlert(Alert.AlertType.ERROR, null, "Введите сумму цифрами");
                     return;
                 }
-                boolean isAddingMoneyComplete = SQLHandler.increaseUserBalance(sumForAdding, currentUserAccount);
+                // TODO DAO-layer boolean isAddingMoneyComplete = SQLHandler.increaseUserBalance(sumForAdding, currentUserAccount);
+                boolean isAddingMoneyComplete = userAccountDao.increaseUserBalance(sumForAdding, currentUserAccount);
                 if (!isAddingMoneyComplete) {
                     printAlert(Alert.AlertType.ERROR, "Ошибка", "Что-то пошло не так...\nпопробуте снова");
                     return;
                 }
-                currentUserAccount.setUserBalance(SQLHandler.getBalanceByUser(currentUserAccount));
+                // TODO DAO-layer currentUserAccount.setUserBalance(SQLHandler.getBalanceByUser(currentUserAccount));
+                currentUserAccount.setUserBalance(userAccountDao.getBalanceByUser(currentUserAccount));
                 balance.setText(currentUserAccount.getUserBalance() + " USD");
                 printAlert(Alert.AlertType.INFORMATION, "Пополнение счёта", "Ваш счёт успешно пополнен на сумму " + sumForAdding + " USD");
             });
@@ -189,7 +190,7 @@ public class UserMenuController {
         // transfer money
         doTransferButton.setOnAction(event -> {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("/transfer-form.fxml"));
+            loader.setLocation(getClass().getResource("/ru.geekbrains.bank/views/transfer-form.fxml"));
             try {
                 loader.load();
             } catch (IOException e) {
@@ -218,13 +219,15 @@ public class UserMenuController {
                     printAlert(Alert.AlertType.ERROR, null, "Введите сумму цифрами");
                     return;
                 }
-                boolean isDonationComplete = SQLHandler.decreaseUserBalance(donat, currentUserAccount);
+                //TODO DAO-layer boolean isDonationComplete = SQLHandler.decreaseUserBalance(donat, currentUserAccount);
+                boolean isDonationComplete = userAccountDao.decreaseUserBalance(donat, currentUserAccount);
                 if (!isDonationComplete) {
                     printAlert(Alert.AlertType.ERROR, "Ошибка", "У Вас недостаточно средств на счету\nили что-то пошло не так...");
                     return;
                 }
                 // update balance in currentUserAccount
-                currentUserAccount.setUserBalance(SQLHandler.getBalanceByUser(currentUserAccount));
+                // TODO DAO-layer currentUserAccount.setUserBalance(SQLHandler.getBalanceByUser(currentUserAccount));
+                currentUserAccount.setUserBalance(userAccountDao.getBalanceByUser(currentUserAccount));
                 balance.setText(currentUserAccount.getUserBalance() + " USD");
                 printAlert(Alert.AlertType.INFORMATION, "Пожертвование", "Спасибо\nВаш донат отправлен");
             });

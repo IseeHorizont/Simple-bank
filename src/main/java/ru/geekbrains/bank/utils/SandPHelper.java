@@ -1,4 +1,4 @@
-package ru.geekbrains.bank;
+package ru.geekbrains.bank.utils;
 
 import org.json.JSONObject;
 
@@ -84,10 +84,10 @@ public class SandPHelper {
                 '}';
     }
 
-    public static void main(String[] args) {
-        long startTime = System.currentTimeMillis();
-        SandPHelper sAndP = new SandPHelper();
-        System.out.println(sAndP.toString());
-        System.out.println("end time: " + ((System.currentTimeMillis() - startTime)));
-    }
+//    public static void main(String[] args) {
+//        long startTime = System.currentTimeMillis();
+//        SandPHelper sAndP = new SandPHelper();
+//        System.out.println(sAndP.toString());
+//        System.out.println("end time: " + ((System.currentTimeMillis() - startTime)));
+//    }
 }

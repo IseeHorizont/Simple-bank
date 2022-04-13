@@ -1,4 +1,4 @@
-package ru.geekbrains.bank;
+package ru.geekbrains.bank.models;
 
 import java.util.Objects;
 import java.util.Random;

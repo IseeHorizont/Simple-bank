@@ -1,4 +1,4 @@
-package ru.geekbrains.bank;
+package ru.geekbrains.bank.utils;
 
 import org.json.JSONObject;
 
@@ -73,11 +73,11 @@ public class ExchangeRates {
                 '}';
     }
 
-    public static void main(String[] args) {
-        long startTime = System.currentTimeMillis();
-        ExchangeRates currencies = new ExchangeRates();
-        System.out.println("start time: " + startTime);
-        System.out.println(currencies.toString());
-        System.out.println("end time: " + ((System.currentTimeMillis() - startTime)));
-    }
+//    public static void main(String[] args) {
+//        long startTime = System.currentTimeMillis();
+//        ExchangeRates currencies = new ExchangeRates();
+//        System.out.println("start time: " + startTime);
+//        System.out.println(currencies.toString());
+//        System.out.println("end time: " + ((System.currentTimeMillis() - startTime)));
+//    }
 }

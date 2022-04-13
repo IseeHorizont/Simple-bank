@@ -1,4 +1,4 @@
-package ru.geekbrains.bank;
+package ru.geekbrains.bank.controllers;
 
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -18,7 +18,7 @@ public class MainController {
     public void openWindowForCreateAccount() throws IOException {
         stage = new Stage();
         stage.initModality(Modality.APPLICATION_MODAL);
-        FXMLLoader newLoader = new FXMLLoader(getClass().getResource("/create-form.fxml"));
+        FXMLLoader newLoader = new FXMLLoader(getClass().getResource("/ru.geekbrains.bank/views/create-form.fxml"));
         Scene scene = new Scene(newLoader.load(), 500, 530);
         stage.setScene(scene);
         stage.setTitle("Create your bank account");
@@ -29,7 +29,7 @@ public class MainController {
     public void openWindowForLoginAccount() throws IOException {
         stage = new Stage();
         stage.initModality(Modality.APPLICATION_MODAL);
-        FXMLLoader newLoader = new FXMLLoader(getClass().getResource("/login-form.fxml"));
+        FXMLLoader newLoader = new FXMLLoader(getClass().getResource("/ru.geekbrains.bank/views/login-form.fxml"));
         Scene scene = new Scene(newLoader.load(), 420, 450);
         stage.setScene(scene);
         stage.setTitle("Log into your bank account");

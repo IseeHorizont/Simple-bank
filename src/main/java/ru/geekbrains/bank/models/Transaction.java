@@ -1,4 +1,4 @@
-package ru.geekbrains.bank;
+package ru.geekbrains.bank.models;
 
 public class Transaction {
     private String transactionDate;

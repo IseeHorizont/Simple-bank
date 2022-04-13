@@ -1,13 +1,16 @@
-package ru.geekbrains.bank;
+package ru.geekbrains.bank.DAO;
+
+import ru.geekbrains.bank.DAO.UserAccountDao;
+import ru.geekbrains.bank.models.UserAccount;
 
 import java.sql.*;
-import java.util.ArrayList;
 
-public class SQLHandler {
+public class UserAccountDaoImpl implements UserAccountDao {
+
     private static Connection connection;
 
-
-    public static void connect() {
+    @Override
+    public void connect() {
         try {
             Class.forName("org.sqlite.JDBC");
             connection = DriverManager.getConnection("jdbc:sqlite:src/bank.db");
@@ -17,12 +20,11 @@ public class SQLHandler {
         }
     }
 
-
-    // add new user account in DB
-    public static boolean insertNewUserInDB(UserAccount newUser) {
+    @Override
+    public boolean insertNewUserInDB(UserAccount newUser) {
         String insertUserQuery = "INSERT INTO users (userId, userName, userPassword, userDateOfBirth, " +
-                                                    "userPlaceOfBirth, userEmail, userBalance) " +
-                                "VALUES (?, ?, ?, ?, ?, ?, ?)";
+                "userPlaceOfBirth, userEmail, userBalance) " +
+                "VALUES (?, ?, ?, ?, ?, ?, ?)";
         connect();
         try (PreparedStatement statement = connection.prepareStatement(insertUserQuery)) {
             statement.setString(1, newUser.getUserId());
@@ -47,8 +49,8 @@ public class SQLHandler {
         return true;
     }
 
-    // to check that are there name & password in DB
-    public static UserAccount isAuthorize(String currentUserName, String currentUserPassword) {
+    @Override
+    public UserAccount isAuthorize(String currentUserName, String currentUserPassword) {
         String selectByNameAndPassword = "SELECT * FROM users WHERE userName=? AND userPassword=?";
         connect();
         UserAccount userAccount = null;
@@ -73,36 +75,8 @@ public class SQLHandler {
         return userAccount;
     }
 
-    // find user's transactions and safe them in ArrayList
-    public static ArrayList<Transaction> getUserTransactions(UserAccount userAccount) {
-        connect();
-        ArrayList<Transaction> userTransactions = new ArrayList<>();
-        // get user's transactions from DB
-        String selectUserTransactions = "SELECT * FROM transactions WHERE transactionSender=? "
-                                                                    + "OR transactionBeneficiary=?";
-        connect();
-        try (PreparedStatement statement = connection.prepareStatement(selectUserTransactions)) {
-            statement.setString(1, userAccount.getUserId());
-            statement.setString(2, userAccount.getUserId());
-            ResultSet resultSet = statement.executeQuery();
-            while (resultSet.next()) {
-                userTransactions.add(new Transaction(
-                        resultSet.getString("transactionDate"),
-                        resultSet.getString("transactionSender"),
-                        resultSet.getString("transactionBeneficiary"),
-                        resultSet.getString("transactionAmount")
-                ));
-            }
-            resultSet.close();
-            connection.close();
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-        }
-        return userTransactions;
-    }
-
-    // delete user
-    public static boolean removeUser(UserAccount userAccount) {
+    @Override
+    public boolean removeUser(UserAccount userAccount) {
         String deleteQuery = "DELETE FROM users WHERE userId=?;";
         connect();
         try (PreparedStatement statement = connection.prepareStatement(deleteQuery)) {
@@ -122,8 +96,8 @@ public class SQLHandler {
         return true;
     }
 
-    // decrease user's balance by donat
-    public static boolean decreaseUserBalance(int donat, UserAccount userAccount) {
+    @Override
+    public boolean decreaseUserBalance(int donat, UserAccount userAccount) {
         String selectUserBalanceQuery = "SELECT userBalance FROM users WHERE userId=?;";
         String updateUserBalanceQuery = "UPDATE users SET userBalance=? WHERE userId=?;";
 
@@ -158,7 +132,8 @@ public class SQLHandler {
         return true;
     }
 
-    public static int getBalanceByUser(UserAccount currentUserAccount) {
+    @Override
+    public int getBalanceByUser(UserAccount currentUserAccount) {
         String selectBalanceByUserQuery = "SELECT userBalance FROM users WHERE userId=?;";
         connect();
         int userBalance = 0;
@@ -175,7 +150,8 @@ public class SQLHandler {
         return userBalance;
     }
 
-    public static boolean increaseUserBalance(int sumForAdding, UserAccount currentUserAccount) {
+    @Override
+    public boolean increaseUserBalance(int sumForAdding, UserAccount currentUserAccount) {
         String increaseUserBalanceQuery = "UPDATE users SET userBalance=userBalance+? WHERE userId=?;";
         connect();
         try (PreparedStatement statement = connection.prepareStatement(increaseUserBalanceQuery)) {
@@ -190,7 +166,8 @@ public class SQLHandler {
         return true;
     }
 
-    public static boolean isUserIdContainsInDB(String beneficiaryId) {
+    @Override
+    public boolean isUserIdContainsInDB(String beneficiaryId) {
         String selectUserById = "SELECT userId FROM users WHERE userId=?;";
         connect();
         try (PreparedStatement statement = connection.prepareStatement(selectUserById)) {
@@ -207,26 +184,4 @@ public class SQLHandler {
         }
         return true;
     }
-
-    // TODO do transfer and write transaction in DB
-    public static boolean transferBetweenUsersAndWriteTransaction(String date, String senderId, String beneficiaryId, int sum) {
-        String decreaseSenderBalanceQuery = "UPDATE users SET userBalance=userBalance-'sum'" + " WHERE userId='" + senderId + "'";
-        String increaseBeneficiaryBalanceQuery = "UPDATE users SET userBalance=userBalance+'sum'" + " WHERE userId='" + beneficiaryId + "'";
-        String writeTransactionQuery = "INSERT INTO transactions (transactionDate, transactionSender, transactionBeneficiary, transactionAmount) VALUES ('" + date + "', '" + senderId + "', '" + beneficiaryId + "', '" + sum + "')";
-        connect();
-        try {
-            connection.setAutoCommit(false);
-            Statement statement = connection.createStatement();
-            statement.addBatch(decreaseSenderBalanceQuery);
-            statement.addBatch(increaseBeneficiaryBalanceQuery);
-            statement.addBatch(writeTransactionQuery);
-            statement.executeBatch();
-            connection.commit();
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return false;
-        }
-        return true;
-    }
-
 }

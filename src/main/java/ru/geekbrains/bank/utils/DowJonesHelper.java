@@ -1,4 +1,4 @@
-package ru.geekbrains.bank;
+package ru.geekbrains.bank.utils;
 
 import org.json.JSONObject;
 
@@ -81,11 +81,11 @@ public class DowJonesHelper {
                 "mcDonaldsPrice = " + mcDonaldsPrice;
     }
 
-    public static void main(String[] args) {
-        long startTime = System.currentTimeMillis();
-        DowJonesHelper dowJ = new DowJonesHelper();
-        System.out.println("start time: " + startTime);
-        System.out.println(dowJ.toString());
-        System.out.println("end time: " + ((System.currentTimeMillis() - startTime)));
-    }
+//    public static void main(String[] args) {
+//        long startTime = System.currentTimeMillis();
+//        DowJonesHelper dowJ = new DowJonesHelper();
+//        System.out.println("start time: " + startTime);
+//        System.out.println(dowJ.toString());
+//        System.out.println("end time: " + ((System.currentTimeMillis() - startTime)));
+//    }
 }

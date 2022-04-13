@@ -1,4 +1,4 @@
-package ru.geekbrains.bank;
+package ru.geekbrains.bank.controllers;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -8,11 +8,15 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import ru.geekbrains.bank.DAO.UserAccountDaoImpl;
+import ru.geekbrains.bank.models.UserAccount;
+
 import java.io.IOException;
 
 public class LogIntoAccountController {
 
     public static UserAccount userAccount;
+    private UserAccountDaoImpl userAccountDao;
 
     @FXML
     private TextField userName;
@@ -26,6 +30,8 @@ public class LogIntoAccountController {
 
     @FXML
     void initialize() {
+        userAccountDao = new UserAccountDaoImpl();
+
         logIntoUserAccount.setOnAction(event -> {
             String currentUserName = userName.getText().trim();
             String currentUserPassword = userPassword.getText().trim();
@@ -39,7 +45,8 @@ public class LogIntoAccountController {
                 return;
             }
             // go to DB & verified user's name & user's password
-            UserAccount currentUserAccount = SQLHandler.isAuthorize(currentUserName, currentUserPassword);
+            // TODO DAO-layer UserAccount currentUserAccount = SQLHandler.isAuthorize(currentUserName, currentUserPassword);
+            UserAccount currentUserAccount = userAccountDao.isAuthorize(currentUserName, currentUserPassword);
             userAccount = currentUserAccount;
 
             if (currentUserAccount == null) {
@@ -49,7 +56,7 @@ public class LogIntoAccountController {
 
             logIntoUserAccount.getScene().getWindow().hide();
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("/usermenu.fxml"));
+            loader.setLocation(getClass().getResource("/ru.geekbrains.bank/views/usermenu.fxml"));
             try {
                 loader.load();
             } catch (IOException e) {

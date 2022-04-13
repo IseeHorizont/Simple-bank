@@ -10,4 +10,12 @@ module ru.geekbrains.bank {
 
     opens ru.geekbrains.bank to javafx.fxml;
     exports ru.geekbrains.bank;
+    exports ru.geekbrains.bank.controllers;
+    opens ru.geekbrains.bank.controllers to javafx.fxml;
+    exports ru.geekbrains.bank.models;
+    opens ru.geekbrains.bank.models to javafx.fxml;
+    exports ru.geekbrains.bank.DAO;
+    opens ru.geekbrains.bank.DAO to javafx.fxml;
+    exports ru.geekbrains.bank.utils;
+    opens ru.geekbrains.bank.utils to javafx.fxml;
 }

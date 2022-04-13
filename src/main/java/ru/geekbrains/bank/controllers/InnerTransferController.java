@@ -1,13 +1,22 @@
-package ru.geekbrains.bank;
+package ru.geekbrains.bank.controllers;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import ru.geekbrains.bank.DAO.TransactionDaoImpl;
+import ru.geekbrains.bank.DAO.UserAccountDaoImpl;
+import ru.geekbrains.bank.models.UserAccount;
+
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.GregorianCalendar;
 
 public class InnerTransferController {
 
     private static UserAccount currentUserAccount = LogIntoAccountController.userAccount;
+    private UserAccountDaoImpl userAccountDao;
+    private TransactionDaoImpl transactionDao;
 
     @FXML
     private TextField beneficiaryIdField;
@@ -20,10 +29,15 @@ public class InnerTransferController {
 
     @FXML
     void initialize() {
+        userAccountDao = new UserAccountDaoImpl();
+        transactionDao = new TransactionDaoImpl();
+
         doTransferMoney.setOnAction(event -> {
             // check data from user
             String beneficiaryId = beneficiaryIdField.getText().trim();
-            if(beneficiaryId == null || !SQLHandler.isUserIdContainsInDB(beneficiaryId)) {
+
+            // TODO DAO layer if(beneficiaryId == null || !SQLHandler.isUserIdContainsInDB(beneficiaryId)) {
+            if (beneficiaryId == null || !userAccountDao.isUserIdContainsInDB(beneficiaryId)) {
                 // wrong id
                 printAlert(Alert.AlertType.ERROR, "Ошибка ввода", "Неверный номер счёта получателя");
                 return;
@@ -36,13 +50,13 @@ public class InnerTransferController {
                 return;
             }
 
-            // TODO transfer money in DB
-            // TODO get String of 'currentDate'
-            // DateFormat currentDate = new SimpleDateFormat("dd.MM.yyyy");
-            // Date date = new Date();
-            var currentDate = "10.04.2022";
+            // transfer money in DB
+            GregorianCalendar calendar = new GregorianCalendar();
+            DateFormat currentDate = new SimpleDateFormat("dd.MM.yyyy");
             // current date -> senderId -> beneficiaryId -> money
-            boolean isTransferComplete = SQLHandler.transferBetweenUsersAndWriteTransaction(currentDate, currentUserAccount.getUserId(), beneficiaryId, amountForTransfer);
+            // TODO add DAO layer
+            boolean isTransferComplete = transactionDao.transferBetweenUsersAndWriteTransaction(currentDate.format(calendar.getTime()), currentUserAccount.getUserId(), beneficiaryId, amountForTransfer);
+            //boolean isTransferComplete = SQLHandler.transferBetweenUsersAndWriteTransaction(currentDate.format(calendar.getTime()), currentUserAccount.getUserId(), beneficiaryId, amountForTransfer);
             if (!isTransferComplete) {
                 printAlert(Alert.AlertType.ERROR, "Ошибка перевода средств", "У Вас недостаточно средств на счету\nили что-то пошло не так...");
                 return;

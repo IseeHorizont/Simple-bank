@@ -1,11 +1,16 @@
-package ru.geekbrains.bank;
+package ru.geekbrains.bank.controllers;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
+import ru.geekbrains.bank.DAO.UserAccountDaoImpl;
+import ru.geekbrains.bank.models.UserAccount;
+
 import java.util.Calendar;
 
 public class CreateAccountController {
+
+    private UserAccountDaoImpl userAccountDao;
 
     @FXML
     private TextField fullNameNewUser;
@@ -20,9 +25,10 @@ public class CreateAccountController {
     private TextField placeOfBirthNewUser;
 
 
-    // method who get data from UI, create a new account, go to DB & write new user
+    // method which get data from UI, create a new account, go to DB & write new user
     @FXML
     public void createNewAccount() {
+        userAccountDao = new UserAccountDaoImpl();
         // checking data which we got from user
         String userName = fullNameNewUser.getText().trim();
         String userEmail = emailNewUser.getText().trim();
@@ -49,7 +55,8 @@ public class CreateAccountController {
         // name, dateOfBirth, placeOfBirth, email
         UserAccount newUser = new UserAccount(userName, userDateOfBirth, userPlaceOfBirth, userEmail);
         // go to DB and write new user
-        if (SQLHandler.insertNewUserInDB(newUser)) {
+        // TODO DAO-layer if (SQLHandler.insertNewUserInDB(newUser)) {
+        if(userAccountDao.insertNewUserInDB(newUser)) {
             printAlert(Alert.AlertType.INFORMATION, "", "Успешная регистрация" + "\nВаш пароль для входа: " + newUser.getUserPassword());
             // after successfully registration need to close registration's window
             fullNameNewUser.getScene().getWindow().hide();
