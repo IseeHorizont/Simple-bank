@@ -160,8 +160,10 @@ public class UserMenuController {
                         printAlert(Alert.AlertType.INFORMATION, "Удаление аккаунта", "Ваш аккаунт удалён");
                         closeAccountButton.getScene().getWindow().hide();
                     } else {
-                        printAlert(Alert.AlertType.ERROR, "Удаление аккаунта", "Неверный пароль");
+                        printAlert(Alert.AlertType.ERROR, "Удаление аккаунта", "Ошибка удаления аккаунта");
                     }
+                } else {
+                    printAlert(Alert.AlertType.ERROR, "Удаление аккаунта", "Неверный пароль");
                 }
             });
         });
@@ -248,6 +250,8 @@ public class UserMenuController {
                 printAlert(Alert.AlertType.INFORMATION, "Пожертвование", "Спасибо\nВаш донат отправлен");
             });
         });
+
+
     }
 
     public void updateTransactionsTable() {

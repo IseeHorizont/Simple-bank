@@ -41,9 +41,8 @@ public class InnerTransferController {
                 printAlert(Alert.AlertType.ERROR, null, "Введите сумму цифрами");
                 return;
             }
-
             // transfer money in DB
-            // current date -> senderId -> beneficiaryId -> money
+            // senderId -> beneficiaryId -> money
             boolean isTransferComplete = transactionDao.transferBetweenUsersAndWriteTransaction(currentUserAccount.getUserId(), beneficiaryId, amountForTransfer);
             if (!isTransferComplete) {
                 printAlert(Alert.AlertType.ERROR, "Ошибка перевода средств", "У Вас недостаточно средств на счету\nили что-то пошло не так...");
