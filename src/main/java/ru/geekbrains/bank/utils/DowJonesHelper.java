@@ -80,12 +80,4 @@ public class DowJonesHelper {
                 "cocaColaPrice = " + cocaColaPrice + "\n" +
                 "mcDonaldsPrice = " + mcDonaldsPrice;
     }
-
-//    public static void main(String[] args) {
-//        long startTime = System.currentTimeMillis();
-//        DowJonesHelper dowJ = new DowJonesHelper();
-//        System.out.println("start time: " + startTime);
-//        System.out.println(dowJ.toString());
-//        System.out.println("end time: " + ((System.currentTimeMillis() - startTime)));
-//    }
 }

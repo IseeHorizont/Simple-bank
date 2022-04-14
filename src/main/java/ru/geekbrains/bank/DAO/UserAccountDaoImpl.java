@@ -1,6 +1,5 @@
 package ru.geekbrains.bank.DAO;
 
-import ru.geekbrains.bank.DAO.UserAccountDao;
 import ru.geekbrains.bank.models.UserAccount;
 
 import java.sql.*;
@@ -42,7 +41,7 @@ public class UserAccountDaoImpl implements UserAccountDao {
                 return false;
             }
             connection.close();
-        } catch (Exception ex) {
+        } catch (SQLException ex) {
             ex.printStackTrace();
             return false;
         }
@@ -58,6 +57,9 @@ public class UserAccountDaoImpl implements UserAccountDao {
             statement.setString(1, currentUserName);
             statement.setString(2, currentUserPassword);
             ResultSet resultSet = statement.executeQuery();
+            if (!resultSet.next()) {
+                return null;
+            }
             userAccount = new UserAccount(
                     resultSet.getString(1),
                     resultSet.getString(2),
@@ -89,7 +91,7 @@ public class UserAccountDaoImpl implements UserAccountDao {
                 return false;
             }
             connection.close();
-        } catch (Exception ex) {
+        } catch (SQLException ex) {
             ex.printStackTrace();
             return false;
         }
@@ -100,7 +102,6 @@ public class UserAccountDaoImpl implements UserAccountDao {
     public boolean decreaseUserBalance(int donat, UserAccount userAccount) {
         String selectUserBalanceQuery = "SELECT userBalance FROM users WHERE userId=?;";
         String updateUserBalanceQuery = "UPDATE users SET userBalance=? WHERE userId=?;";
-
         connect();
         Integer newUserBalance = null;
         try (PreparedStatement statement = connection.prepareStatement(selectUserBalanceQuery)) {
@@ -114,7 +115,7 @@ public class UserAccountDaoImpl implements UserAccountDao {
             }
             resultSet.close();
             connection.close();
-        } catch (SQLException ex) {
+        } catch (Exception ex) {
             ex.printStackTrace();
             return false;
         }
@@ -140,6 +141,9 @@ public class UserAccountDaoImpl implements UserAccountDao {
         try (PreparedStatement statement = connection.prepareStatement(selectBalanceByUserQuery)) {
             statement.setString(1, currentUserAccount.getUserId());
             ResultSet resultSet = statement.executeQuery();
+            if (!resultSet.next()) {
+                return 0;
+            }
             userBalance = resultSet.getInt(1);
             resultSet.close();
             connection.close();
@@ -173,7 +177,7 @@ public class UserAccountDaoImpl implements UserAccountDao {
         try (PreparedStatement statement = connection.prepareStatement(selectUserById)) {
             statement.setString(1, beneficiaryId);
             ResultSet resultSet = statement.executeQuery();
-            if (resultSet == null) {
+            if (!resultSet.next()) {
                 resultSet.close();
                 connection.close();
                 return false;

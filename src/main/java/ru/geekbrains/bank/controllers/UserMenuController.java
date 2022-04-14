@@ -1,5 +1,6 @@
 package ru.geekbrains.bank.controllers;
 
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -12,10 +13,12 @@ import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import ru.geekbrains.bank.DAO.TransactionDaoImpl;
+import ru.geekbrains.bank.utils.DowJonesHelper;
 import ru.geekbrains.bank.utils.ExchangeRates;
 import ru.geekbrains.bank.DAO.UserAccountDaoImpl;
 import ru.geekbrains.bank.models.Transaction;
 import ru.geekbrains.bank.models.UserAccount;
+import ru.geekbrains.bank.utils.SandPHelper;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -56,6 +59,7 @@ public class UserMenuController {
     private Button logOutFromUserMenuButton;
     @FXML
     private Button giveDonationButton;
+
     @FXML
     private Text usdTextField;
     @FXML
@@ -64,21 +68,26 @@ public class UserMenuController {
     private Text gbpTextField;
     @FXML
     private Text cadTextField;
-
-//    @FXML
-//    private Text applePriceField;
-//
-//    @FXML
-//    private Text microsoftPriceField;
-//
-//    @FXML
-//    private Text jpmorganPriceField;
-//
-//    @FXML
-//    private Text cocaColaPriceField;
-//
-//    @FXML
-//    private Text mcDonaldsPriceField;
+    @FXML
+    private Text applePriceField;
+    @FXML
+    private Text microsoftPriceField;
+    @FXML
+    private Text jpmorganPriceField;
+    @FXML
+    private Text cocaColaPriceField;
+    @FXML
+    private Text mcDonaldsPriceField;
+    @FXML
+    private Text amdPriceField;
+    @FXML
+    private Text nvidiaPriceField;
+    @FXML
+    private Text pfizerPriceField;
+    @FXML
+    private Text teslaPriceField;
+    @FXML
+    private Text oraclePriceField;
 
     @FXML
     public void initialize() {
@@ -89,39 +98,47 @@ public class UserMenuController {
         balance.setText(currentUserAccount.getUserBalance() + " USD");
         accountNumber.setText(currentUserAccount.getUserId());
 
-        // show exchange rate
-        ExchangeRates exchangeRates = new ExchangeRates();
-        if (exchangeRates != null) {
-            usdTextField.setText(exchangeRates.getUsdRate() + " руб");
-            euroTextField.setText(exchangeRates.getEurRate() + " руб");
-            gbpTextField.setText(exchangeRates.getGbpRate() + " руб");
-            cadTextField.setText(exchangeRates.getCadRate() + " руб");
-        }
-
-        // TODO maybe I need to create stocks classes in Main before user came into account?
-        // TODO time out of requests to API - 5 sec
-        // show Dow Jones stocks
-//        DowJonesHelper dowJones = new DowJonesHelper();
-//        if (dowJones != null) {
-//            applePriceField.setText(dowJones.getApplePrice() + "$");
-//            microsoftPriceField.setText(dowJones.getMicrosoftPrice() + "$");
-//            jpmorganPriceField.setText(dowJones.getJpmorganPrice() + "$");
-//            cocaColaPriceField.setText(dowJones.getCocaColaPrice() + "$");
-//            mcDonaldsPriceField.setText(dowJones.getMcDonaldsPrice() + "$");
-//        }
+        // get currencies & stocks rates from API (5 requests per 1 min)
+        Runnable stocks = () -> {
+            ExchangeRates exchangeRates = new ExchangeRates();
+            if (exchangeRates != null) {
+                usdTextField.setText(exchangeRates.getUsdRate() + " ₽");
+                euroTextField.setText(exchangeRates.getEurRate() + " ₽");
+                gbpTextField.setText(exchangeRates.getGbpRate() + " ₽");
+                cadTextField.setText(exchangeRates.getCadRate() + " ₽");
+            }
+            try {
+                Thread.sleep(60000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            DowJonesHelper dowJones = new DowJonesHelper();
+            if (dowJones != null) {
+                applePriceField.setText(dowJones.getApplePrice() + "$");
+                microsoftPriceField.setText(dowJones.getMicrosoftPrice() + "$");
+                jpmorganPriceField.setText(dowJones.getJpmorganPrice() + "$");
+                cocaColaPriceField.setText(dowJones.getCocaColaPrice() + "$");
+                mcDonaldsPriceField.setText(dowJones.getMcDonaldsPrice() + "$");
+            }
+            try {
+                Thread.sleep(60000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            SandPHelper sAndP = new SandPHelper();
+            if (sAndP != null) {
+                amdPriceField.setText(sAndP.getAmdPrice() + "$");
+                nvidiaPriceField.setText(sAndP.getNvidiaPrice() + "$");
+                pfizerPriceField.setText(sAndP.getPfizerPrice() + "$");
+                teslaPriceField.setText(sAndP.getTeslaPrice() + "$");
+                oraclePriceField.setText(sAndP.getOraclePrice() + "$");
+            }
+        };
+        Thread stocksThread = new Thread(stocks);
+        stocksThread.start();
 
         // go to DB and get user's transactions
-        // TODO implement DAO
-        ArrayList<Transaction> userTransactions = transactionDao.getUserTransactions(currentUserAccount);
-        //ArrayList<Transaction> userTransactions = SQLHandler.getUserTransactions(currentUserAccount);
-        if (userTransactions != null) {
-            columnTransactionDate.setCellValueFactory(new PropertyValueFactory<>("transactionDate"));
-            columnTransactionSender.setCellValueFactory(new PropertyValueFactory<>("transactionSender"));
-            columnTransactionBeneficiary.setCellValueFactory(new PropertyValueFactory<>("transactionBeneficiary"));
-            columnTransactionAmount.setCellValueFactory(new PropertyValueFactory<>("transactionAmount"));
-            transactions.addAll(userTransactions);
-            tableOfTransactions.setItems(transactions);
-        }
+        updateTransactionsTable();
 
         // log out from account
         logOutFromUserMenuButton.setOnAction(event -> {
@@ -138,7 +155,6 @@ public class UserMenuController {
             confirmText.ifPresent(password -> {
                 if (password.equals(currentUserAccount.getUserPassword())) {
                     // go to DB & remove current user
-                    // TODO DAO-layer boolean isUserDeleted = SQLHandler.removeUser(currentUserAccount);
                     boolean isUserDeleted = userAccountDao.removeUser(currentUserAccount);
                     if (isUserDeleted) {
                         printAlert(Alert.AlertType.INFORMATION, "Удаление аккаунта", "Ваш аккаунт удалён");
@@ -174,15 +190,17 @@ public class UserMenuController {
                     printAlert(Alert.AlertType.ERROR, null, "Введите сумму цифрами");
                     return;
                 }
-                // TODO DAO-layer boolean isAddingMoneyComplete = SQLHandler.increaseUserBalance(sumForAdding, currentUserAccount);
                 boolean isAddingMoneyComplete = userAccountDao.increaseUserBalance(sumForAdding, currentUserAccount);
                 if (!isAddingMoneyComplete) {
                     printAlert(Alert.AlertType.ERROR, "Ошибка", "Что-то пошло не так...\nпопробуте снова");
                     return;
                 }
-                // TODO DAO-layer currentUserAccount.setUserBalance(SQLHandler.getBalanceByUser(currentUserAccount));
                 currentUserAccount.setUserBalance(userAccountDao.getBalanceByUser(currentUserAccount));
                 balance.setText(currentUserAccount.getUserBalance() + " USD");
+                transactionDao.transactionByMyself(currentUserAccount.getUserId(), sumForAdding);
+                Platform.runLater(() -> {
+                    updateTransactionsTable();
+                });
                 printAlert(Alert.AlertType.INFORMATION, "Пополнение счёта", "Ваш счёт успешно пополнен на сумму " + sumForAdding + " USD");
             });
         });
@@ -219,20 +237,29 @@ public class UserMenuController {
                     printAlert(Alert.AlertType.ERROR, null, "Введите сумму цифрами");
                     return;
                 }
-                //TODO DAO-layer boolean isDonationComplete = SQLHandler.decreaseUserBalance(donat, currentUserAccount);
                 boolean isDonationComplete = userAccountDao.decreaseUserBalance(donat, currentUserAccount);
                 if (!isDonationComplete) {
                     printAlert(Alert.AlertType.ERROR, "Ошибка", "У Вас недостаточно средств на счету\nили что-то пошло не так...");
                     return;
                 }
                 // update balance in currentUserAccount
-                // TODO DAO-layer currentUserAccount.setUserBalance(SQLHandler.getBalanceByUser(currentUserAccount));
                 currentUserAccount.setUserBalance(userAccountDao.getBalanceByUser(currentUserAccount));
                 balance.setText(currentUserAccount.getUserBalance() + " USD");
                 printAlert(Alert.AlertType.INFORMATION, "Пожертвование", "Спасибо\nВаш донат отправлен");
             });
         });
+    }
 
+    public void updateTransactionsTable() {
+        ArrayList<Transaction> userTransactions = transactionDao.getUserTransactions(currentUserAccount);
+        if (userTransactions != null) {
+            columnTransactionDate.setCellValueFactory(new PropertyValueFactory<>("transactionDate"));
+            columnTransactionSender.setCellValueFactory(new PropertyValueFactory<>("transactionSender"));
+            columnTransactionBeneficiary.setCellValueFactory(new PropertyValueFactory<>("transactionBeneficiary"));
+            columnTransactionAmount.setCellValueFactory(new PropertyValueFactory<>("transactionAmount"));
+            transactions.addAll(userTransactions);
+            tableOfTransactions.setItems(transactions);
+        }
     }
 
     private static void printAlert(Alert.AlertType type, String title,  String messageToUser){

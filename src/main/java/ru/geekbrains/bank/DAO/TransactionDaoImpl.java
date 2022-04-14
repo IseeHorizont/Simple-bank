@@ -1,11 +1,13 @@
 package ru.geekbrains.bank.DAO;
 
-import ru.geekbrains.bank.DAO.TransactionDao;
 import ru.geekbrains.bank.models.Transaction;
 import ru.geekbrains.bank.models.UserAccount;
 
 import java.sql.*;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.GregorianCalendar;
 
 public class TransactionDaoImpl implements TransactionDao {
 
@@ -51,7 +53,11 @@ public class TransactionDaoImpl implements TransactionDao {
     }
 
     @Override
-    public boolean transferBetweenUsersAndWriteTransaction(String date, String senderId, String beneficiaryId, int sum) {
+    public boolean transferBetweenUsersAndWriteTransaction(String senderId, String beneficiaryId, int sum) {
+        GregorianCalendar calendar = new GregorianCalendar();
+        DateFormat currentDate = new SimpleDateFormat("dd.MM.yyyy");
+        String date = currentDate.format(calendar.getTime());
+
         String decreaseSenderBalanceQuery = "UPDATE users SET userBalance=userBalance-'sum'" + " WHERE userId='" + senderId + "'";
         String increaseBeneficiaryBalanceQuery = "UPDATE users SET userBalance=userBalance+'sum'" + " WHERE userId='" + beneficiaryId + "'";
         String writeTransactionQuery = "INSERT INTO transactions (transactionDate, transactionSender, transactionBeneficiary, transactionAmount) VALUES ('" + date + "', '" + senderId + "', '" + beneficiaryId + "', '" + sum + "')";
@@ -61,6 +67,29 @@ public class TransactionDaoImpl implements TransactionDao {
             Statement statement = connection.createStatement();
             statement.addBatch(decreaseSenderBalanceQuery);
             statement.addBatch(increaseBeneficiaryBalanceQuery);
+            statement.addBatch(writeTransactionQuery);
+            statement.executeBatch();
+            connection.commit();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public boolean transactionByMyself(String senderId, int sum) {
+        GregorianCalendar calendar = new GregorianCalendar();
+        DateFormat currentDate = new SimpleDateFormat("dd.MM.yyyy");
+        String date = currentDate.format(calendar.getTime());
+
+        String increaseBalanceQuery = "UPDATE users SET userBalance=userBalance+'sum'" + " WHERE userId='" + senderId + "'";
+        String writeTransactionQuery = "INSERT INTO transactions (transactionDate, transactionSender, transactionBeneficiary, transactionAmount) VALUES ('" + date + "', '" + senderId + "', '" + senderId + "', '" + sum + "')";
+        connect();
+        try {
+            connection.setAutoCommit(false);
+            Statement statement = connection.createStatement();
+            statement.addBatch(increaseBalanceQuery);
             statement.addBatch(writeTransactionQuery);
             statement.executeBatch();
             connection.commit();

@@ -111,63 +111,43 @@
             <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                     <children>
-                        <ImageView fx:id="usdImage" fitHeight="34.0" fitWidth="44.0" layoutX="27.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="usdImage" fitHeight="45.0" fitWidth="41.0" layoutX="54.0" layoutY="18.0" pickOnBounds="true" preserveRatio="true">
                             <image>
-                                <Image url="@../../images/usa-icon.png" />
+                                <Image url="@../../images/currencies/usa_flag.png" />
                             </image></ImageView>
-                        <Text fx:id="usdTextField" layoutX="142.0" layoutY="39.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0 руб" wrappingWidth="109.21630859375">
+                        <Text fx:id="usdTextField" layoutX="20.0" layoutY="86.0" strokeType="OUTSIDE" strokeWidth="0.0" text="--" textAlignment="CENTER" wrappingWidth="109.21630859375">
                             <font>
-                                <Font name="Rockwell" size="18.0" />
+                                <Font name="Rockwell" size="15.0" />
                             </font>
                         </Text>
-                        <ImageView fx:id="euroImage" fitHeight="38.0" fitWidth="63.0" layoutX="26.0" layoutY="58.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="euroImage" fitHeight="45.0" fitWidth="41.0" layoutX="175.0" layoutY="18.0" pickOnBounds="true" preserveRatio="true">
                             <image>
-                                <Image url="@../../images/euro-icon.png" />
+                                <Image url="@../../images/currencies/eu_flag.png" />
                             </image></ImageView>
-                        <Text fx:id="euroTextField" layoutX="151.0" layoutY="86.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0 руб" wrappingWidth="108.9658203125">
+                        <Text fx:id="euroTextField" layoutX="141.0" layoutY="86.0" strokeType="OUTSIDE" strokeWidth="0.0" text="--" textAlignment="CENTER" wrappingWidth="108.9658203125">
                             <font>
-                                <Font name="Rockwell" size="18.0" />
+                                <Font name="Rockwell" size="15.0" />
                             </font>
                         </Text>
-                        <ImageView fx:id="gbpImage" fitHeight="36.0" fitWidth="47.0" layoutX="278.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="gbpImage" fitHeight="45.0" fitWidth="41.0" layoutX="304.0" layoutY="19.0" pickOnBounds="true" preserveRatio="true">
                             <image>
-                                <Image url="@../../images/north-korea-icon.png" />
+                                <Image url="@../../images/currencies/uk_flag.png" />
                             </image></ImageView>
-                        <Text fx:id="gbpTextField" layoutX="389.0" layoutY="39.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0 руб" wrappingWidth="112.9658203125">
+                        <Text fx:id="gbpTextField" layoutX="268.0" layoutY="86.0" strokeType="OUTSIDE" strokeWidth="0.0" text="--" textAlignment="CENTER" wrappingWidth="112.9658203125">
                             <font>
-                                <Font name="Rockwell" size="18.0" />
+                                <Font name="Rockwell" size="15.0" />
                             </font>
                         </Text>
-                        <ImageView fx:id="cadImage" fitHeight="37.0" fitWidth="39.0" layoutX="279.0" layoutY="60.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="cadImage" fitHeight="45.0" fitWidth="42.0" layoutX="434.0" layoutY="19.0" pickOnBounds="true" preserveRatio="true">
                             <image>
-                                <Image url="@../../images/canada-icon.png" />
+                                <Image url="@../../images/currencies/canada_flag.png" />
                             </image>
                         </ImageView>
-                        <Text fx:id="cadTextField" layoutX="387.0" layoutY="86.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0 руб" wrappingWidth="116.9658203125">
+                        <Text fx:id="cadTextField" layoutX="397.0" layoutY="86.0" strokeType="OUTSIDE" strokeWidth="0.0" text="--" textAlignment="CENTER" wrappingWidth="116.9658203125">
                             <font>
-                                <Font name="Rockwell" size="18.0" />
+                                <Font name="Rockwell" size="15.0" />
                             </font>
                         </Text>
-                        <Label layoutX="83.0" layoutY="19.0" text="USD">
-                            <font>
-                                <Font name="Rockwell" size="18.0" />
-                            </font>
-                        </Label>
-                        <Label layoutX="83.0" layoutY="66.0" text="EURO">
-                            <font>
-                                <Font name="Rockwell" size="18.0" />
-                            </font>
-                        </Label>
-                        <Label layoutX="336.0" layoutY="20.0" text="GBP">
-                            <font>
-                                <Font name="Rockwell" size="18.0" />
-                            </font>
-                        </Label>
-                        <Label layoutX="335.0" layoutY="67.0" text="CAD">
-                            <font>
-                                <Font name="Rockwell" size="18.0" />
-                            </font>
-                        </Label>
                     </children></AnchorPane>
             </content>
         </Tab>
@@ -200,27 +180,27 @@
                               <Image url="@../../images/dow-jones-logo/mcdonalds-icon.png" />
                            </image>
                         </ImageView>
-                        <Text fx:id="applePriceField" layoutX="17.0" layoutY="89.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" textAlignment="CENTER" wrappingWidth="92.21630859375">
+                        <Text fx:id="applePriceField" layoutX="17.0" layoutY="89.0" strokeType="OUTSIDE" strokeWidth="0.0" text="--" textAlignment="CENTER" wrappingWidth="92.21630859375">
                             <font>
                                 <Font name="Rockwell" />
                             </font>
                         </Text>
-                        <Text fx:id="microsoftPriceField" layoutX="132.0" layoutY="89.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" textAlignment="CENTER" wrappingWidth="76.21630859375">
+                        <Text fx:id="microsoftPriceField" layoutX="132.0" layoutY="89.0" strokeType="OUTSIDE" strokeWidth="0.0" text="--" textAlignment="CENTER" wrappingWidth="76.21630859375">
                             <font>
                                 <Font name="Rockwell" />
                             </font>
                         </Text>
-                        <Text fx:id="jpmorganPriceField" layoutX="228.0" layoutY="89.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" textAlignment="CENTER" wrappingWidth="80.0">
+                        <Text fx:id="jpmorganPriceField" layoutX="228.0" layoutY="89.0" strokeType="OUTSIDE" strokeWidth="0.0" text="--" textAlignment="CENTER" wrappingWidth="80.0">
                             <font>
                                 <Font name="Rockwell" />
                             </font>
                         </Text>
-                        <Text fx:id="cocaColaPriceField" layoutX="330.0" layoutY="89.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" textAlignment="CENTER" wrappingWidth="87.0">
+                        <Text fx:id="cocaColaPriceField" layoutX="330.0" layoutY="89.0" strokeType="OUTSIDE" strokeWidth="0.0" text="--" textAlignment="CENTER" wrappingWidth="87.0">
                             <font>
                                 <Font name="Rockwell" />
                             </font>
                         </Text>
-                        <Text fx:id="mcDonaldsPriceField" layoutX="428.0" layoutY="89.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" textAlignment="CENTER" wrappingWidth="99.21630859375">
+                        <Text fx:id="mcDonaldsPriceField" layoutX="428.0" layoutY="89.0" strokeType="OUTSIDE" strokeWidth="0.0" text="--" textAlignment="CENTER" wrappingWidth="99.21630859375">
                             <font>
                                 <Font name="Rockwell" />
                             </font>
@@ -258,27 +238,27 @@
                                 <Image url="@../../images/sAndP-logo/icons8-oracle-logo-96.png" />
                             </image>
                         </ImageView>
-                        <Text fx:id="amdPriceField" layoutX="17.0" layoutY="89.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" textAlignment="CENTER" wrappingWidth="92.21630859375">
+                        <Text fx:id="amdPriceField" layoutX="17.0" layoutY="89.0" strokeType="OUTSIDE" strokeWidth="0.0" text="--" textAlignment="CENTER" wrappingWidth="92.21630859375">
                             <font>
                                 <Font name="Rockwell" />
                             </font>
                         </Text>
-                        <Text fx:id="nvidiaPriceField" layoutX="132.0" layoutY="89.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" textAlignment="CENTER" wrappingWidth="76.21630859375">
+                        <Text fx:id="nvidiaPriceField" layoutX="132.0" layoutY="89.0" strokeType="OUTSIDE" strokeWidth="0.0" text="--" textAlignment="CENTER" wrappingWidth="76.21630859375">
                             <font>
                                 <Font name="Rockwell" />
                             </font>
                         </Text>
-                        <Text fx:id="pfizerPriceField" layoutX="228.0" layoutY="89.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" textAlignment="CENTER" wrappingWidth="80.0">
+                        <Text fx:id="pfizerPriceField" layoutX="228.0" layoutY="89.0" strokeType="OUTSIDE" strokeWidth="0.0" text="--" textAlignment="CENTER" wrappingWidth="80.0">
                             <font>
                                 <Font name="Rockwell" />
                             </font>
                         </Text>
-                        <Text fx:id="teslaPriceField" layoutX="330.0" layoutY="89.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" textAlignment="CENTER" wrappingWidth="87.0">
+                        <Text fx:id="teslaPriceField" layoutX="330.0" layoutY="89.0" strokeType="OUTSIDE" strokeWidth="0.0" text="--" textAlignment="CENTER" wrappingWidth="87.0">
                             <font>
                                 <Font name="Rockwell" />
                             </font>
                         </Text>
-                        <Text fx:id="oraclePriceField" layoutX="428.0" layoutY="89.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" textAlignment="CENTER" wrappingWidth="99.21630859375">
+                        <Text fx:id="oraclePriceField" layoutX="428.0" layoutY="89.0" strokeType="OUTSIDE" strokeWidth="0.0" text="--" textAlignment="CENTER" wrappingWidth="99.21630859375">
                             <font>
                                 <Font name="Rockwell" />
                             </font>

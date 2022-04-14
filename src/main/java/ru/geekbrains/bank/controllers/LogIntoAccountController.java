@@ -45,7 +45,6 @@ public class LogIntoAccountController {
                 return;
             }
             // go to DB & verified user's name & user's password
-            // TODO DAO-layer UserAccount currentUserAccount = SQLHandler.isAuthorize(currentUserName, currentUserPassword);
             UserAccount currentUserAccount = userAccountDao.isAuthorize(currentUserName, currentUserPassword);
             userAccount = currentUserAccount;
 

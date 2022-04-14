@@ -42,7 +42,7 @@ public class ExchangeRates {
             }
             reader.close();
         }catch (Exception ex){
-            System.out.println("Ошибка");
+            System.out.println("Ошибка получения данных от API");
         }
         return content.toString();
     }

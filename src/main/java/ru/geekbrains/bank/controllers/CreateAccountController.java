@@ -14,13 +14,10 @@ public class CreateAccountController {
 
     @FXML
     private TextField fullNameNewUser;
-
     @FXML
     private TextField emailNewUser;
-
     @FXML
     private TextField dateOfBirthNewUser;
-
     @FXML
     private TextField placeOfBirthNewUser;
 
@@ -55,7 +52,6 @@ public class CreateAccountController {
         // name, dateOfBirth, placeOfBirth, email
         UserAccount newUser = new UserAccount(userName, userDateOfBirth, userPlaceOfBirth, userEmail);
         // go to DB and write new user
-        // TODO DAO-layer if (SQLHandler.insertNewUserInDB(newUser)) {
         if(userAccountDao.insertNewUserInDB(newUser)) {
             printAlert(Alert.AlertType.INFORMATION, "", "Успешная регистрация" + "\nВаш пароль для входа: " + newUser.getUserPassword());
             // after successfully registration need to close registration's window

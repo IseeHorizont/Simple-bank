@@ -8,5 +8,6 @@ import java.util.ArrayList;
 public interface TransactionDao {
     public void connect();
     public ArrayList<Transaction> getUserTransactions(UserAccount userAccount);
-    public boolean transferBetweenUsersAndWriteTransaction(String date, String senderId, String beneficiaryId, int sum);
+    public boolean transferBetweenUsersAndWriteTransaction(String senderId, String beneficiaryId, int sum);
+    public boolean transactionByMyself(String senderId, int sum);
 }

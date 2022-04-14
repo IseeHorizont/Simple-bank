@@ -42,11 +42,4 @@ public class MainController {
             System.exit(0);
         });
     }
-
-    @FXML
-    public static void exitStage() {
-        Platform.runLater(() -> {
-            stage.close();
-        });
-    }
 }
