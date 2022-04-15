@@ -32,7 +32,7 @@
   <b>#4 - User's menu</b>
 </p>
 <p align="center">
-  <img src="images for readme/usermenu.png" width="1050" height="700">
+  <img src="images for readme/usermenu.png" width="1000" height="700">
 </p>
 
 <p align="center">
