@@ -21,6 +21,12 @@ public class InnerTransferController {
     @FXML
     private Button doTransferMoney;
 
+    private UserMenuController userMenuController;
+
+    public void setParent(UserMenuController userMenuController) {
+        this.userMenuController = userMenuController;
+    }
+
     @FXML
     void initialize() {
         userAccountDao = new UserAccountDaoImpl();
@@ -48,6 +54,11 @@ public class InnerTransferController {
                 printAlert(Alert.AlertType.ERROR, "Ошибка перевода средств", "У Вас недостаточно средств на счету\nили что-то пошло не так...");
                 return;
             }
+            // update balance & transaction's table after transfer another user
+            userAccountDao.decreaseUserBalance(amountForTransfer, currentUserAccount);
+            userMenuController.updateUserBalanceAndSetBalanceOnForm();
+            userMenuController.updateTransactionsTable();
+
             printAlert(Alert.AlertType.INFORMATION, "Перевод средств", "Перевод успешно выполнен");
             doTransferMoney.getScene().getWindow().hide();
         });

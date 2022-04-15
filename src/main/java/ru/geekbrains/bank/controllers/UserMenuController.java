@@ -30,6 +30,8 @@ public class UserMenuController {
     private UserAccountDaoImpl userAccountDao;
     private TransactionDaoImpl transactionDao;
 
+    private InnerTransferController transferWindow;
+
     @FXML
     private Text balance;
     @FXML
@@ -221,7 +223,11 @@ public class UserMenuController {
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.setTitle("Перевод средств");
             stage.setScene(new Scene(root, 500, 600));
-            stage.showAndWait();
+            stage.show();
+
+            // for use transfer's form
+            transferWindow = loader.getController();
+            transferWindow.setParent(this);
         });
 
         // give a donation
@@ -245,13 +251,15 @@ public class UserMenuController {
                     return;
                 }
                 // update balance in currentUserAccount
-                currentUserAccount.setUserBalance(userAccountDao.getBalanceByUser(currentUserAccount));
-                balance.setText(currentUserAccount.getUserBalance() + " USD");
+                updateUserBalanceAndSetBalanceOnForm();
                 printAlert(Alert.AlertType.INFORMATION, "Пожертвование", "Спасибо\nВаш донат отправлен");
             });
         });
+    }
 
-
+    public void updateUserBalanceAndSetBalanceOnForm() {
+        currentUserAccount.setUserBalance(userAccountDao.getBalanceByUser(currentUserAccount));
+        balance.setText(currentUserAccount.getUserBalance() + " USD");
     }
 
     public void updateTransactionsTable() {
@@ -261,6 +269,7 @@ public class UserMenuController {
             columnTransactionSender.setCellValueFactory(new PropertyValueFactory<>("transactionSender"));
             columnTransactionBeneficiary.setCellValueFactory(new PropertyValueFactory<>("transactionBeneficiary"));
             columnTransactionAmount.setCellValueFactory(new PropertyValueFactory<>("transactionAmount"));
+            transactions.clear();
             transactions.addAll(userTransactions);
             tableOfTransactions.setItems(transactions);
         }
