@@ -102,39 +102,45 @@ public class UserMenuController {
 
         // get currencies & stocks rates from API (5 requests per 1 min)
         Runnable stocks = () -> {
-            ExchangeRates exchangeRates = new ExchangeRates();
-            if (exchangeRates != null) {
-                usdTextField.setText(exchangeRates.getUsdRate() + " ₽");
-                euroTextField.setText(exchangeRates.getEurRate() + " ₽");
-                gbpTextField.setText(exchangeRates.getGbpRate() + " ₽");
-                cadTextField.setText(exchangeRates.getCadRate() + " ₽");
-            }
-            try {
-                Thread.sleep(60000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-            DowJonesHelper dowJones = new DowJonesHelper();
-            if (dowJones != null) {
-                applePriceField.setText(dowJones.getApplePrice() + "$");
-                microsoftPriceField.setText(dowJones.getMicrosoftPrice() + "$");
-                jpmorganPriceField.setText(dowJones.getJpmorganPrice() + "$");
-                cocaColaPriceField.setText(dowJones.getCocaColaPrice() + "$");
-                mcDonaldsPriceField.setText(dowJones.getMcDonaldsPrice() + "$");
-            }
-            try {
-                Thread.sleep(60000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-            SandPHelper sAndP = new SandPHelper();
-            if (sAndP != null) {
-                amdPriceField.setText(sAndP.getAmdPrice() + "$");
-                nvidiaPriceField.setText(sAndP.getNvidiaPrice() + "$");
-                pfizerPriceField.setText(sAndP.getPfizerPrice() + "$");
-                teslaPriceField.setText(sAndP.getTeslaPrice() + "$");
-                oraclePriceField.setText(sAndP.getOraclePrice() + "$");
-            }
+            Platform.runLater(() -> {
+                ExchangeRates exchangeRates = new ExchangeRates();
+                if (exchangeRates != null) {
+                    usdTextField.setText(exchangeRates.getUsdRate() + " ₽");
+                    euroTextField.setText(exchangeRates.getEurRate() + " ₽");
+                    gbpTextField.setText(exchangeRates.getGbpRate() + " ₽");
+                    cadTextField.setText(exchangeRates.getCadRate() + " ₽");
+                }
+            });
+                try {
+                    Thread.sleep(60000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            Platform.runLater(() -> {
+                DowJonesHelper dowJones = new DowJonesHelper();
+                if (dowJones != null) {
+                    applePriceField.setText(dowJones.getApplePrice() + "$");
+                    microsoftPriceField.setText(dowJones.getMicrosoftPrice() + "$");
+                    jpmorganPriceField.setText(dowJones.getJpmorganPrice() + "$");
+                    cocaColaPriceField.setText(dowJones.getCocaColaPrice() + "$");
+                    mcDonaldsPriceField.setText(dowJones.getMcDonaldsPrice() + "$");
+                }
+            });
+                try {
+                    Thread.sleep(60000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            Platform.runLater(() -> {
+                SandPHelper sAndP = new SandPHelper();
+                if (sAndP != null) {
+                    amdPriceField.setText(sAndP.getAmdPrice() + "$");
+                    nvidiaPriceField.setText(sAndP.getNvidiaPrice() + "$");
+                    pfizerPriceField.setText(sAndP.getPfizerPrice() + "$");
+                    teslaPriceField.setText(sAndP.getTeslaPrice() + "$");
+                    oraclePriceField.setText(sAndP.getOraclePrice() + "$");
+                }
+            });
         };
         Thread stocksThread = new Thread(stocks);
         stocksThread.start();
